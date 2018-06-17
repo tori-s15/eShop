@@ -41,7 +41,7 @@
 			}
 
 			function loginCheck(){
-				document.login_button.style.display = "<%= login_button %>"
+				document.getElementsByName("login_button").style.display = "<%= login_button %>";
 			}
 		-->
 		</script>
