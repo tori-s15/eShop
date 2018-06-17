@@ -224,7 +224,7 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 				orderid = rs.getInt("ORDER_ID");
 			}
 
-			logger.trace("注文ID", orderid);
+			logger.debug("注文ID={}", orderid);
 
 			// コミット
 			conn.commit();
@@ -287,10 +287,10 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			logger.trace("注文ID", order.getOrderid());
-			logger.trace("ユーザID", order.getUserid());
-			logger.trace("ステータス", order.getStatus());
-			logger.trace("登録件数", i + "件");
+			logger.debug("注文ID={}", order.getOrderid());
+			logger.debug("ユーザID={}", order.getUserid());
+			logger.debug("ステータス={}", order.getStatus());
+			logger.debug("登録件数={}件", i);
 
 			// コミット
 			conn.commit();
@@ -338,7 +338,7 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			logger.trace("削除件数", i + "件");
+			logger.debug("削除件数={}件", i);
 
 			// コミット
 			conn.commit();
@@ -354,7 +354,6 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			close(statement);
 			close(conn);
 		}
-
 	}
 
 	/**

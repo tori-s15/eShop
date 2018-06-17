@@ -24,19 +24,15 @@
 	</Appenders>
 	<Loggers>
 		<Logger name="controller" additivity="false">
-			<AppenderRef ref="Console" />
 			<AppenderRef ref="logfile001" />
 		</Logger>
 		<Logger name="dao" additivity="false">
-			<AppenderRef ref="Console" />
 			<AppenderRef ref="logfile001" />
 		</Logger>
 		<Logger name="dao.postgresql" additivity="false">
-			<AppenderRef ref="Console" />
 			<AppenderRef ref="logfile001" />
 		</Logger>
 		<Root level="trace">
-			<AppenderRef ref="Console" />
 			<AppenderRef ref="logfile001" />
 		</Root>
 	</Loggers>

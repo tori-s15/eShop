@@ -113,8 +113,8 @@ public class PostgreSqlUserMasterDao implements UserMasterDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			logger.trace("ユーザID", usermaster.getUserid());
-			logger.trace("登録件数", i + "件");
+			logger.debug("ユーザID={}", usermaster.getUserid());
+			logger.debug("登録件数={}件", i);
 
 			// コミット
 			conn.commit();
@@ -171,8 +171,8 @@ public class PostgreSqlUserMasterDao implements UserMasterDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			logger.trace("ユーザID", usermaster.getUserid());
-			logger.trace("登録件数", i + "件");
+			logger.debug("ユーザID={}", usermaster.getUserid());
+			logger.debug("登録件数={}件", i);
 
 			// コミット
 			conn.commit();
@@ -220,7 +220,7 @@ public class PostgreSqlUserMasterDao implements UserMasterDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			logger.trace("削除件数", i + "件");
+			logger.trace("削除件数={}件", i);
 
 			// コミット
 			conn.commit();

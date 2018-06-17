@@ -146,9 +146,9 @@ public class PostgreSqlOrderDetailTableDao implements OrderDetailTableDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			logger.trace("注文ID", detail.getOrderid());
-			logger.trace("明細番号", detail.getNo());
-			logger.trace("登録件数", i + "件");
+			logger.debug("注文ID={}", detail.getOrderid());
+			logger.debug("明細番号={}", detail.getNo());
+			logger.debug("登録件数={}件", i);
 
 			// コミット
 			conn.commit();
@@ -206,9 +206,9 @@ public class PostgreSqlOrderDetailTableDao implements OrderDetailTableDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			logger.trace("注文ID", detail.getOrderid());
-			logger.trace("明細番号", detail.getNo());
-			logger.trace("更新件数", i + "件");
+			logger.debug("注文ID={}", detail.getOrderid());
+			logger.debug("明細番号={}", detail.getNo());
+			logger.debug("更新件数={}件", i);
 
 			// コミット
 			conn.commit();
@@ -260,7 +260,7 @@ public class PostgreSqlOrderDetailTableDao implements OrderDetailTableDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			logger.trace("削除件数", i + "件");
+			logger.debug("削除件数={}件", i);
 
 			// コミット
 			conn.commit();

@@ -213,8 +213,8 @@ public class PostgreSqlItemMasterDao implements ItemMasterDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			logger.trace("商品ID", itemmaster.getItemid());
-			logger.trace("登録件数", i + "件");
+			logger.debug("商品ID={}", itemmaster.getItemid());
+			logger.debug("登録件数={}件", i);
 
 			// コミット
 			conn.commit();
@@ -271,7 +271,7 @@ public class PostgreSqlItemMasterDao implements ItemMasterDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			logger.trace("更新件数", i + "件");
+			logger.debug("更新件数={}件", i);
 
 			// コミット
 			conn.commit();
@@ -319,7 +319,7 @@ public class PostgreSqlItemMasterDao implements ItemMasterDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			logger.trace("削除件数", i + "件");
+			logger.debug("削除件数={}件", i);
 
 			// コミット
 			conn.commit();

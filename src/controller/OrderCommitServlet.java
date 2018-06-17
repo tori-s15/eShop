@@ -65,9 +65,9 @@ public class OrderCommitServlet extends HttpServlet {
 		// 注文IDをキーに注文情報を検索
 		ItemOrder order = orderdao.selectByOrderId(orderid);
 
-		logger.debug("注文ID", order.getOrderid());
-		logger.debug("ユーザID", order.getUserid());
-		logger.debug("ステータス", order.getStatus());
+		logger.debug("注文ID={}", order.getOrderid());
+		logger.debug("ユーザID={}", order.getUserid());
+		logger.debug("ステータス={}", order.getStatus());
 
 
 		// 支払方法・発送先をセット
