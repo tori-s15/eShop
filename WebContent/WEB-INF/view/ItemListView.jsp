@@ -15,7 +15,7 @@
 		<title>デモアプリ（ネット書店）</title>
 	</head>
 	<body>
-		<input type="button" onclick="location.href = './Login.jsp'" value="ログイン">
+		<input type="button" onclick="location.href = '/WEB-INF/view/Login.jsp'" value="ログイン">
 
 		<div id="contents">
 			<div class="container">
