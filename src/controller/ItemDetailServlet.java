@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.postgresql.MockItemMasterDao;
+import dao.postgresql.PostgreSqlDaoFactory;
+import dao.postgresql.PostgreSqlItemMasterDao;
 import model.ItemMaster;
 
 /**
@@ -43,8 +44,12 @@ public class ItemDetailServlet extends HttpServlet {
 		// 文字コードをutf-8に変換
 		request.setCharacterEncoding("utf-8");
 
+		// dao生成
+		PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
+		PostgreSqlItemMasterDao dao = (PostgreSqlItemMasterDao) daofactory.createItemMasterDao();
+	
 		// dao生成（モック）
-		MockItemMasterDao dao = new MockItemMasterDao();
+		//MockItemMasterDao dao = new MockItemMasterDao();
 
 		// 検索処理（商品ID検索）
 		ItemMaster item = dao.selectById((String)request.getParameter("itemid"));
