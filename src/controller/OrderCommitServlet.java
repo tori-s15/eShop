@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.postgresql.PostgreSqlDaoFactory;
+import dao.postgresql.PostgreSqlOrderTableDao;
+import model.ItemOrder;
+
 /**
  * Servlet implementation class ShopMenuServlet
  */
@@ -39,7 +43,7 @@ public class OrderCommitServlet extends HttpServlet {
 		// 文字コードをutf-8に変換
 		request.setCharacterEncoding("utf-8");
 
-/*
+
 		// パラメータの取得
 		long orderid = (long)Integer.parseInt(request.getParameter("orderid"));	// 注文ID
 		int payment = Integer.parseInt(request.getParameter("payment"));		// 支払方法
@@ -61,7 +65,7 @@ public class OrderCommitServlet extends HttpServlet {
 
 		// 注文情報を更新
 		orderdao.update(order);
-*/
+
 		// 注文完了画面へ遷移
 	    String view = "/WEB-INF/view/OrderFinishView.jsp";
 	    RequestDispatcher dispatcher = request.getRequestDispatcher(view);

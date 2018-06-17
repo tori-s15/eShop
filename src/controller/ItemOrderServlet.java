@@ -9,6 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.postgresql.PostgreSqlDaoFactory;
+import dao.postgresql.PostgreSqlItemMasterDao;
+import dao.postgresql.PostgreSqlOrderDetailTableDao;
+import dao.postgresql.PostgreSqlOrderTableDao;
+import model.ItemMaster;
+import model.ItemOrder;
+import model.ItemOrderDetail;
+
 /**
  * Servlet implementation class ItemOrderServlet
  */
@@ -39,7 +47,7 @@ public class ItemOrderServlet extends HttpServlet {
 
 		// 文字コードをutf-8に変換
 		request.setCharacterEncoding("utf-8");
-/*
+
 		// パラメータの取得
 		long orderid = 0;														// 注文ID
 		String itemid = (String)request.getParameter("itemid");					// 商品ID
@@ -62,7 +70,7 @@ public class ItemOrderServlet extends HttpServlet {
 			// 注文をカートに格納
 			order = new ItemOrder();
 			order.setUserid("TEST");					// ユーザIDをセット
-			order.setStatus(ItemOrder.INIT);			// カート格納状態をセット
+			order.setStatus(ItemOrder.STATUS_INIT);			// カート格納状態をセット
 			order.setTotalamount(amount);				// 合計金額に金額をセット
 
 			// カートを保存して注文IDを取得
@@ -100,7 +108,7 @@ public class ItemOrderServlet extends HttpServlet {
 		// 当該ユーザの注文一覧でステータスが「カート」のものをパラメータにセット
 		request.setAttribute("order", order);
 
-*/
+
 		// レジ画面へ遷移
 	    String view = "/WEB-INF/view/ItemOrderView.jsp";
 	    RequestDispatcher dispatcher = request.getRequestDispatcher(view);
