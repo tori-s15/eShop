@@ -9,10 +9,16 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import dao.OrderDetailTableDao;
 import model.ItemOrderDetail;
 
 public class PostgreSqlOrderDetailTableDao implements OrderDetailTableDao {
+
+	/** ログ出力 */
+	private Logger logger = LogManager.getLogger();
 
 	/** コネクション */
 	private DataSource source;
@@ -64,13 +70,12 @@ public class PostgreSqlOrderDetailTableDao implements OrderDetailTableDao {
 				detaillist.add(detail);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("DB ERROR",e);
 		} finally {
 			close(rs);
 			close(statement);
 			close(conn);
 		}
-
 		return detaillist;
 	}
 
@@ -141,17 +146,19 @@ public class PostgreSqlOrderDetailTableDao implements OrderDetailTableDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			System.out.println("更新：" + i + "件");
+			logger.trace("注文ID", detail.getOrderid());
+			logger.trace("明細番号", detail.getNo());
+			logger.trace("登録件数", i + "件");
 
 			// コミット
 			conn.commit();
 
 		} catch (SQLException  e) {
-			e.printStackTrace();
+			logger.error("DB ERROR",e);
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
-				e1.printStackTrace();
+				logger.error("DB ERROR",e1);
 			}
 		} finally {
 			close(statement);
@@ -199,17 +206,19 @@ public class PostgreSqlOrderDetailTableDao implements OrderDetailTableDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			System.out.println("更新：" + i + "件");
+			logger.trace("注文ID", detail.getOrderid());
+			logger.trace("明細番号", detail.getNo());
+			logger.trace("更新件数", i + "件");
 
 			// コミット
 			conn.commit();
 
 		} catch (SQLException  e) {
-			e.printStackTrace();
+			logger.error("DB ERROR",e);
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
-				e1.printStackTrace();
+				logger.error("DB ERROR",e1);
 			}
 		} finally {
 			close(statement);
@@ -251,17 +260,17 @@ public class PostgreSqlOrderDetailTableDao implements OrderDetailTableDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			System.out.println("更新：" + i + "件");
+			logger.trace("削除件数", i + "件");
 
 			// コミット
 			conn.commit();
 
 		} catch (SQLException  e) {
-			e.printStackTrace();
+			logger.error("DB ERROR",e);
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
-				e1.printStackTrace();
+				logger.error("DB ERROR",e1);
 			}
 		} finally {
 			close(statement);
@@ -279,7 +288,7 @@ public class PostgreSqlOrderDetailTableDao implements OrderDetailTableDao {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.error("DB ERROR",e);
 			}
 		}
 	}
@@ -293,7 +302,7 @@ public class PostgreSqlOrderDetailTableDao implements OrderDetailTableDao {
 			try {
 				statement.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.error("DB ERROR",e);
 			}
 		}
 	}
@@ -307,7 +316,7 @@ public class PostgreSqlOrderDetailTableDao implements OrderDetailTableDao {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.error("DB ERROR",e);
 			}
 		}
 	}

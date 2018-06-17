@@ -17,6 +17,7 @@ import model.ItemOrder;
 
 public class PostgreSqlOrderTableDao implements OrderTableDao {
 
+	/** ログ出力 */
 	private Logger logger = LogManager.getLogger();
 
 	/** コネクション */
@@ -69,7 +70,7 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("DB ERROR",e);
 		} finally {
 			close(rs);
 			close(statement);
@@ -118,7 +119,7 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			}
 
 		} catch (SQLException e) {
-			logger.error("SYSTEM ERROR",e);
+			logger.error("DB ERROR",e);
 		} finally {
 			close(rs);
 			close(statement);
@@ -168,7 +169,7 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("DB ERROR",e);
 		} finally {
 			close(rs);
 			close(statement);
@@ -229,11 +230,11 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			conn.commit();
 
 		} catch (SQLException  e) {
-			e.printStackTrace();
+			logger.error("DB ERROR",e);
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
-				e1.printStackTrace();
+				logger.error("DB ERROR",e1);
 			}
 		} finally {
 			close(rs);
@@ -295,11 +296,11 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			conn.commit();
 
 		} catch (SQLException  e) {
-			e.printStackTrace();
+			logger.error("DB ERROR",e);
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
-				e1.printStackTrace();
+				logger.error("DB ERROR",e1);
 			}
 		} finally {
 			close(statement);
@@ -343,11 +344,11 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			conn.commit();
 
 		} catch (SQLException  e) {
-			e.printStackTrace();
+			logger.error("DB ERROR",e);
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
-				e1.printStackTrace();
+				logger.error("DB ERROR",e1);
 			}
 		} finally {
 			close(statement);
@@ -365,7 +366,7 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.error("DB ERROR",e);
 			}
 		}
 	}
@@ -379,7 +380,7 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			try {
 				statement.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.error("DB ERROR",e);
 			}
 		}
 	}
@@ -393,7 +394,7 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.error("DB ERROR",e);
 			}
 		}
 	}
