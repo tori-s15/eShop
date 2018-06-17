@@ -55,8 +55,12 @@ public class OrderCommitServlet extends HttpServlet {
 		PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
 		PostgreSqlOrderTableDao orderdao = (PostgreSqlOrderTableDao) daofactory.createOrderTableDao();
 
+		System.out.println("[DAO生成]：OrderCommitServlet");
+
 		// 注文IDをキーに注文情報を検索
 		ItemOrder order = orderdao.selectByOrderId(orderid);
+
+		System.out.println("[注文情報検索]：OrderCommitServlet");
 
 		// 支払方法・発送先をセット
 		order.setPayment(payment);
@@ -67,6 +71,8 @@ public class OrderCommitServlet extends HttpServlet {
 
 		// 注文情報を更新
 		orderdao.update(order);
+
+		System.out.println("[ステータス更新]：OrderCommitServlet");
 
 		// 注文完了画面へ遷移
 	    String view = "/WEB-INF/view/OrderFinishView.jsp";
