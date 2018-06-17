@@ -243,7 +243,7 @@ public class PostgreSqlItemMasterDao implements ItemMasterDao {
 			updatesql.append(" set ");
 			updatesql.append("  ITEM_NAME = ? ,");
 			updatesql.append("  PRICE = ? ,");
-			updatesql.append("  STOCKS = ? ");
+			updatesql.append("  STOCKS = ? ,");
 			updatesql.append("  DESCRIPTION = ? ");
 			updatesql.append(" where ");
 			updatesql.append("  ITEM_ID = ? ");

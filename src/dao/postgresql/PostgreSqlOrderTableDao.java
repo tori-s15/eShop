@@ -259,7 +259,7 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			updatesql.append(" set ");
 			updatesql.append("  TOTAL_AMOUNT = ? ,");
 			updatesql.append("  PAYMENT = ? ,");
-			updatesql.append("  ADDRESS = ? ");
+			updatesql.append("  ADDRESS = ? ,");
 			updatesql.append("  STATUS = ? ");
 			updatesql.append(" where ");
 			updatesql.append("  ORDER_ID = ? ");
