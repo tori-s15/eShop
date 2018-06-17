@@ -87,6 +87,9 @@ public class LoginServlet extends HttpServlet {
 				case "chk" :
 				    logger.trace("mode:chk");
 
+					logger.debug("userid(Input)={}",userid);
+					logger.debug("password(Input)={}",password);
+
 					// 認証処理（OKであればユーザマスタが戻る）
 					UserMaster user = certification(userid, password);
 
