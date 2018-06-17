@@ -5,8 +5,12 @@
 	@SuppressWarnings("unchecked")
 	List<ItemMaster> itemlist = (List<ItemMaster>) request.getAttribute("itemlist");
 
+	String readonly = "";
 	String userid = (String) request.getAttribute("userid");
-	if (userid == null) userid = "";
+	if (userid == null) {
+		userid = "";
+		readonly = "disabled";
+	}
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -37,7 +41,6 @@
 	</head>
 	<body>
 		<input type="button" value="ログイン" onclick="execRequest('./LoginServlet','post','login')">
-		<input type="hidden" name="userid" value="<%= userid %>">
 		<div id="contents">
 			<div class="container">
 				<% for(ItemMaster item  : itemlist) { %>
@@ -46,7 +49,8 @@
 						<h2><%= item.getItemname() %></h2>
 						<h3>\<%= item.getPrice() %></h3>
 						<input type="hidden" name="itemid" value="<%= item.getItemid() %>">
-						<input type="submit" value="詳細">
+						<input type="hidden" name="userid" value="<%= userid %>">
+						<input type="submit" value="詳細" <%= readonly %>>
 					</form>
 				</div>
 				<% } %>

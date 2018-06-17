@@ -99,7 +99,10 @@ public class LoginServlet extends HttpServlet {
 					    view = "/ItemListServlet";
 
 					    // パラメータにユーザマスタをセット
-						request.setAttribute("usermaster", user);
+						//request.setAttribute("usermaster", user);
+
+					    // パラメータにユーザIDをセット
+					    request.setAttribute("userid", user.getUserid());
 
 				   // 認証NGの場合
 					} else {

@@ -56,6 +56,7 @@ public class OrderCommitServlet extends HttpServlet {
 		long orderid = (long)Integer.parseInt(request.getParameter("orderid"));	// 注文ID
 		int payment = Integer.parseInt(request.getParameter("payment"));		// 支払方法
 		String address = (String)request.getParameter("address");				// 発送先
+		String userid = request.getParameter("userid");							// ユーザID
 
 		// dao生成
 		PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
@@ -79,6 +80,9 @@ public class OrderCommitServlet extends HttpServlet {
 
 		// 注文情報を更新
 		orderdao.update(order);
+
+		// ユーザIDのセット
+		request.setAttribute("userid", userid);
 
 		// 注文完了画面へ遷移
 	    String view = "/WEB-INF/view/OrderFinishView.jsp";

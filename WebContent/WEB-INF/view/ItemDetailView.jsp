@@ -2,6 +2,8 @@
 <%@ page import="model.ItemMaster"%>
 <%
 	ItemMaster item = (ItemMaster) request.getAttribute("item");
+	String userid = (String) request.getAttribute("userid");
+	if (userid == null) userid = "";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,6 +25,7 @@
 						注文数:<input type="text" name="number" value="">
 						<input type="hidden" name="itemid" value="<%= item.getItemid() %>">
 						<input type="hidden" name="price" value="<%= item.getPrice() %>">
+						<input type="hidden" name="userid" value="<%= userid %>">
 						<input type="submit" value="レジへ進む">
 					</form>
 				</div>

@@ -2,6 +2,10 @@
 <%@ page import="model.ItemOrder"%>
 <%
 	ItemOrder order = (ItemOrder) request.getAttribute("order");
+
+	String userid = (String) request.getAttribute("userid");
+	if (userid == null) userid = "";
+
 //	ItemOrder order = new ItemOrder();
 //	order.setOrderid(1);
 //	order.setUserid("TEST");
@@ -27,6 +31,7 @@
 						振り込み<input type="radio" name="payment" value="<%= ItemOrder.PAYMENT_PAY %>"><br/>
 						送付先：<input type="text" name="address" value=""><br/>
 						<input type="hidden" name="orderid" value="<%= order.getOrderid() %>">
+						<input type="hidden" name="userid" value="<%= userid %>">
 						<input type="submit" value="注文確定">
 					</form>
 				</div>

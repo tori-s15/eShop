@@ -52,6 +52,9 @@ public class ItemDetailServlet extends HttpServlet {
 		// 文字コードをutf-8に変換
 		request.setCharacterEncoding("utf-8");
 
+		// パラメータの取得
+		String userid = request.getParameter("userid");		// ユーザID
+
 		// dao生成
 		PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
 		PostgreSqlItemMasterDao dao = (PostgreSqlItemMasterDao) daofactory.createItemMasterDao();
@@ -64,6 +67,9 @@ public class ItemDetailServlet extends HttpServlet {
 
 		// 検索結果のセット
 		request.setAttribute("item", item);
+
+		// ユーザIDのセット
+		request.setAttribute("userid", userid);
 
 		// 詳細表示画面へ遷移
 	    String view = "/WEB-INF/view/ItemDetailView.jsp";

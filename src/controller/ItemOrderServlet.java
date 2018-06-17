@@ -57,6 +57,7 @@ public class ItemOrderServlet extends HttpServlet {
 		long price = 0;			// 単価
 		long amount = 0;		// 金額 （数量　×　単価）
 		String view = null;		// 遷移先画面
+		String userid = null;	// ユーザID
 
 		try {
 
@@ -70,6 +71,7 @@ public class ItemOrderServlet extends HttpServlet {
 			number = (long)Integer.parseInt(request.getParameter("number"));	// 数量
 			price = (long)Integer.parseInt(request.getParameter("price"));		// 単価
 			amount = number * price;											// 金額 （数量　×　単価）
+			userid = request.getParameter("userid");						// ユーザID
 
 			// dao生成
 			PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
@@ -78,7 +80,7 @@ public class ItemOrderServlet extends HttpServlet {
 			PostgreSqlItemMasterDao itemdao = (PostgreSqlItemMasterDao) daofactory.createItemMasterDao();
 
 			// ユーザIDをキーにカートを検索
-			ItemOrder order = orderdao.selectByUserIdInitOnly("TEST");
+			ItemOrder order = orderdao.selectByUserIdInitOnly(userid);
 
 			// カートに保存しているものがない場合
 			if ( order == null ) {
@@ -127,6 +129,8 @@ public class ItemOrderServlet extends HttpServlet {
 			// 当該ユーザの注文一覧でステータスが「カート」のものをパラメータにセット
 			request.setAttribute("order", order);
 
+			// ユーザIDのセット
+			request.setAttribute("userid", userid);
 
 			// 遷移先をレジ画面へセット
 		    view = "/WEB-INF/view/ItemOrderView.jsp";
