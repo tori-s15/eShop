@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	Boolean judge = true;
-	judge = (Boolean) request.getAttribute("judge");
+	boolean judge = true;
+	judge = (boolean) request.getAttribute("judge");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -17,7 +17,7 @@
 					<form method="post" action="./LoginServlet">
 						<h2>ログイン</h2>
 						<h3>ユーザIDとパスワードを入力してください。</h3>
-						<% if (!judge) { %>
+						<% if ( judge == false) { %>
 							<h3><font color="red">ユーザIDかパスワードが間違っています。</font></h3>
 						<% } %>>
 						ユーザID:<input type="text" name="userid" value=""><br/>
