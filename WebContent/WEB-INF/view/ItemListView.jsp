@@ -6,6 +6,7 @@
 	List<ItemMaster> itemlist = (List<ItemMaster>) request.getAttribute("itemlist");
 
 	String userid = (String) request.getAttribute("userid");
+	if (userid == null) userid = "";
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
