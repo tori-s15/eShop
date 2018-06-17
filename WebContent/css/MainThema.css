@@ -1,0 +1,150 @@
+@charset "UTF-8";
+/*--Reset-----------------------------------------------------------*/
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+html,body {
+	height: 100%;
+}
+
+img {
+	border: none;
+}
+
+ul,ol {
+	list-style: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+ }
+
+body {
+	font-size: 100%;
+	font-color: ;
+	font-family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;
+	background: #FFFFF0;
+	line-height: 1.6;
+
+}
+
+h1 {
+	font-size: 180%;
+	text-shadow: 2px 2px 4px #333;
+	color: #808000;
+}
+
+h2 {
+	font-size: 110%;
+	color: #3F3F3F;
+}
+
+
+h3,h4,h5,h6 {
+	font-size: 100%;
+	color: #3F3F3F;
+}
+
+a,
+a:link {
+	color: #4776AF;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #4776AF;
+	text-decoration: none;
+}
+
+a:hover,
+a:active {
+	color: #9fb7d4;
+}
+
+a:focus {
+	outline: none;
+}
+
+article,aside,details,footer,header,main,menu,nav,section,summary {
+	display: block;
+}
+
+/*------------------------------------------------------------------*/
+
+/*--layout----------------------------------------------------------*/
+
+/* 0 to 479px */
+#wrapper {
+	padding: 0 10px;
+}
+header {
+	margin: 0 auto 20px auto;
+	padding: 10px;
+	border-bottom: 2px solid #9fb7d4;
+}
+#contents {
+	margin: 0 auto;
+	overflow: hidden;
+	width: 320px;
+	background: #FFFFF0;
+}
+.grid {
+	float: left;
+	width: 280px;
+	background: #9fb7d4;
+	margin: 10px;
+	padding: 10px;
+	height: 130px;/*サンプル用に高さ設定してあります。*/
+}
+.g2 {
+	width: 280px;
+	background: #9fb7d4;
+	margin: 10px;
+	padding: 10px;
+	height: 300px;/*サンプル用に高さ設定してあります。*/
+}
+.g3 {
+	width: 120px;
+	background: #9fb7d4;
+	margin: 10px;
+	padding: 10px;
+	height: 130px;/*サンプル用に高さ設定してあります。*/
+}
+footer {
+	margin: 20px auto 0 auto;
+	padding: 10px;
+	border-top: 2px solid #9fb7d4;
+}
+/* ** */
+@media only screen and (min-width: 480px) {
+#contents {
+	width: 640px;
+	background: #FFFFF0;
+}
+.g2 {
+	width: 440px;
+}
+/* ** */}
+@media only screen and (min-width: 768px) {
+header {
+	width: 960px;
+	min-width: 960px;
+}
+#contents {
+	width: 960px;
+	margin: 0 auto;
+	overflow: hidden;
+	min-height: 500px;/*サンプル用に高さ設定してあります。*/
+	background: #FFFFF0;
+}
+footer {
+	width: 960px;
+}
