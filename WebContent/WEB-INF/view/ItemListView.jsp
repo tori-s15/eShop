@@ -13,6 +13,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>デモアプリ（ネット書店）</title>
 		<link rel="stylesheet" href="./css/MainThema.css">
 		<script type="text/javascript">
 		<!--
@@ -33,9 +34,6 @@
 			}
 		-->
 		</script>
-
-
-		<title>デモアプリ（ネット書店）</title>
 	</head>
 	<body>
 		<input type="button" value="ログイン" onclick="execRequest('./LoginServlet','post','login')">
