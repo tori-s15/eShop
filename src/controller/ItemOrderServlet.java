@@ -70,11 +70,14 @@ public class ItemOrderServlet extends HttpServlet {
 			// 注文をカートに格納
 			order = new ItemOrder();
 			order.setUserid("TEST");					// ユーザIDをセット
-			order.setStatus(ItemOrder.STATUS_INIT);			// カート格納状態をセット
+			order.setStatus(ItemOrder.STATUS_INIT);		// カート格納状態をセット
 			order.setTotalamount(amount);				// 合計金額に金額をセット
 
 			// カートを保存して注文IDを取得
 			orderid = orderdao.insert(order);
+
+			// 注文IDをセット
+			order.setOrderid(orderid);
 
 		// カートに保存しているものがある場合
 		} else {
