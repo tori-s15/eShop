@@ -4,6 +4,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import dao.DaoFactory;
 import dao.ItemMasterDao;
 import dao.OrderDetailTableDao;
@@ -11,6 +14,9 @@ import dao.OrderTableDao;
 import dao.UserMasterDao;
 
 public class PostgreSqlDaoFactory extends DaoFactory {
+
+	/** ログ出力 */
+	private Logger logger = LogManager.getLogger();
 
 	/**
 	 * UserMasterDaoの生成
@@ -67,11 +73,9 @@ public class PostgreSqlDaoFactory extends DaoFactory {
 
         } catch (NamingException e) {
 			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
+			logger.error("DB ERROR",e);
 		}
-
         return ds;
-
 	}
 
 

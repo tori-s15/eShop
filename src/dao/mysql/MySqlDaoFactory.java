@@ -1,6 +1,11 @@
 package dao.mysql;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import dao.DaoFactory;
 import dao.ItemMasterDao;
@@ -9,6 +14,9 @@ import dao.OrderTableDao;
 import dao.UserMasterDao;
 
 public class MySqlDaoFactory extends DaoFactory {
+
+	/** ログ出力 */
+	private Logger logger = LogManager.getLogger();
 
 	/**
 	 * UserMasterDaoの生成
@@ -57,8 +65,18 @@ public class MySqlDaoFactory extends DaoFactory {
 	 * @return DataSource
 	 */
 	private DataSource getDataSource() {
-		return null;
+		// MySqlへ接続（データプール）
+        InitialContext ctx = null;
+		DataSource ds = null;
+        try {
+			ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
 
+        } catch (NamingException e) {
+			// TODO 自動生成された catch ブロック
+			logger.error("DB ERROR",e);
+		}
+        return ds;
 	}
 
 
