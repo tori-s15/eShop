@@ -69,18 +69,24 @@ public class LoginServlet extends HttpServlet {
 			switch ( mode ) {
 				// 新規ユーザ登録
 				case "new" :
-					// 遷移先をユーザ登録画面にセット
+				    logger.trace("mode:new");
+
+				    // 遷移先をユーザ登録画面にセット
 					view = "/WEB-INF/view/UserEntryView.jsp";
 					break;
 
 				// ログイン
 				case "login" :
-					// 遷移先をログイン画面にセット
+				    logger.trace("mode:login");
+
+				    // 遷移先をログイン画面にセット
 					view = "/WEB-INF/view/Login.jsp";
 					break;
 
 				// 認証処理
 				case "chk" :
+				    logger.trace("mode:chk");
+
 					// 認証処理（OKであればユーザマスタが戻る）
 					UserMaster user = certification(userid, password);
 
@@ -140,6 +146,8 @@ public class LoginServlet extends HttpServlet {
 
 			// 認証NG（パスワード間違い）の場合
 			if ((user != null) && !(user.getPassword().equals(password)) ) {
+				logger.debug("password={}",user.getPassword());
+
 				user = null;
 			}
 		}
