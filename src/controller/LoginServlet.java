@@ -98,7 +98,7 @@ public class LoginServlet extends HttpServlet {
 						view = "/WEB-INF/view/Login.jsp";
 
 						// パラメータに判定「NG」をセット
-						request.setAttribute("judge", false);
+						request.setAttribute("judge", "NG");
 
 					}
 					break;
