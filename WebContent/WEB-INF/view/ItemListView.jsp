@@ -41,13 +41,15 @@
 			}
 
 			function loginCheck(){
-				document.getElementsByName("login_button").style.display = "<%= login_button %>";
+				document.login.login_button.style.display = "<%= login_button %>";
 			}
 		-->
 		</script>
 	</head>
 	<body onload="loginCheck()">
-		<input type="button" value="ログイン" name="login_button" onclick="execRequest('./LoginServlet','post','login')">
+		<form name="login">
+			<input type="button" value="ログイン" name="login_button" onclick="execRequest('./LoginServlet','post','login')">
+		</form>>
 		<div id="contents">
 			<div class="container">
 				<% for(ItemMaster item  : itemlist) { %>
