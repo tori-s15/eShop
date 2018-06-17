@@ -21,19 +21,19 @@
 			</Policies>
 			<DefaultRolloverStrategy max="3"/>
 		</RollingFile>
-		<Loggers>
-			<Logger name="controller">
-				<AppenderRef ref="Console" />
-				<AppenderRef ref="logfile001" />
-			</Logger>
-			<Logger name="dao">
-				<AppenderRef ref="Console" />
-				<AppenderRef ref="logfile001" />
-			</Logger>
-			<Root level="trace">
-				<AppenderRef ref="Console" />
-				<AppenderRef ref="logfile001" />
-			</Root>
-		</Loggers>
 	</Appenders>
+	<Loggers>
+		<Logger name="controller" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="logfile001" />
+		</Logger>
+		<Logger name="dao" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="logfile001" />
+		</Logger>
+		<Root level="trace">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="logfile001" />
+		</Root>
+	</Loggers>
 </Configuration>
