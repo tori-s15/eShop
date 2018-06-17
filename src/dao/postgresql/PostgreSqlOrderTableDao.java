@@ -218,6 +218,8 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 				orderid = rs.getInt("ORDER_ID");
 			}
 
+			System.out.println("登録[ORDER_TABLE]：注文ID：" + orderid);
+
 			// コミット
 			conn.commit();
 
