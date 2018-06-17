@@ -5,11 +5,14 @@
 	@SuppressWarnings("unchecked")
 	List<ItemMaster> itemlist = (List<ItemMaster>) request.getAttribute("itemlist");
 
-	String readonly = "";
+	String detail_readonly = "";
+	String login_button = "none";
 	String userid = (String) request.getAttribute("userid");
 	if (userid == null) {
 		userid = "";
-		readonly = "disabled";
+		detail_readonly = "disabled";
+		login_button = "";
+
 	}
 %>
 
@@ -36,11 +39,15 @@
 			    }
 			    form.submit();
 			}
+
+			function loginCheck(){
+				document.login_button.style.display = "<%= login_button %>"
+			}
 		-->
 		</script>
 	</head>
-	<body>
-		<input type="button" value="ログイン" onclick="execRequest('./LoginServlet','post','login')">
+	<body onload="loginCheck()">
+		<input type="button" value="ログイン" name="login_button" onclick="execRequest('./LoginServlet','post','login')">
 		<div id="contents">
 			<div class="container">
 				<% for(ItemMaster item  : itemlist) { %>
@@ -50,7 +57,7 @@
 						<h3>\<%= item.getPrice() %></h3>
 						<input type="hidden" name="itemid" value="<%= item.getItemid() %>">
 						<input type="hidden" name="userid" value="<%= userid %>">
-						<input type="submit" value="詳細" <%= readonly %>>
+						<input type="submit" value="詳細" <%= detail_readonly %>>
 					</form>
 				</div>
 				<% } %>
