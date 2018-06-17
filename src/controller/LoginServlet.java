@@ -144,11 +144,16 @@ public class LoginServlet extends HttpServlet {
 			// ユーザIDでユーザマスタを検索
 			user = dao.selectByUserId(userid);
 
-			// 認証NG（パスワード間違い）の場合
-			if ((user != null) && !(user.getPassword().equals(password)) ) {
-				logger.debug("password={}",user.getPassword());
 
-				user = null;
+			// 認証NG（パスワード間違い）の場合
+			if ( user != null ) {
+
+				logger.debug("password(DB)={}",user.getPassword());
+				logger.debug("password(Input)={}",password);
+
+				if ( !(user.getPassword().equals(password)) ) {
+					user = null;
+				}
 			}
 		}
 		return user;
