@@ -9,10 +9,15 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import dao.OrderTableDao;
 import model.ItemOrder;
 
 public class PostgreSqlOrderTableDao implements OrderTableDao {
+
+	private Logger logger = LogManager.getLogger();
 
 	/** コネクション */
 	private DataSource source;
@@ -113,7 +118,7 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("SYSTEM ERROR",e);
 		} finally {
 			close(rs);
 			close(statement);
@@ -218,7 +223,7 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 				orderid = rs.getInt("ORDER_ID");
 			}
 
-			System.out.println("登録[ORDER_TABLE]：注文ID：" + orderid);
+			logger.trace("注文ID", orderid);
 
 			// コミット
 			conn.commit();
@@ -281,7 +286,10 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			System.out.println("更新[ORDER_TABLE]：" + i + "件");
+			logger.trace("注文ID", order.getOrderid());
+			logger.trace("ユーザID", order.getUserid());
+			logger.trace("ステータス", order.getStatus());
+			logger.trace("登録件数", i + "件");
 
 			// コミット
 			conn.commit();
@@ -329,7 +337,7 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			System.out.println("更新：" + i + "件");
+			logger.trace("削除件数", i + "件");
 
 			// コミット
 			conn.commit();

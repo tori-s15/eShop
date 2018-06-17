@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import dao.postgresql.PostgreSqlDaoFactory;
 import dao.postgresql.PostgreSqlItemMasterDao;
 import model.ItemMaster;;
@@ -19,6 +22,9 @@ import model.ItemMaster;;
  */
 @WebServlet("/ItemListServlet")
 public class ItemListServlet extends HttpServlet {
+
+	private Logger logger = LogManager.getLogger();
+
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -42,6 +48,8 @@ public class ItemListServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		logger.trace("start");
+
 		// 文字コードをutf-8に変換
 		request.setCharacterEncoding("utf-8");
 
@@ -63,6 +71,8 @@ public class ItemListServlet extends HttpServlet {
 	    RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 
 	    dispatcher.forward(request, response);
+
+		logger.trace("end");
 
 	}
 

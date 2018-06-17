@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import dao.postgresql.PostgreSqlDaoFactory;
 import dao.postgresql.PostgreSqlOrderTableDao;
 import model.ItemOrder;
@@ -18,6 +21,9 @@ import model.ItemOrder;
  */
 @WebServlet("/OrderCommitServlet")
 public class OrderCommitServlet extends HttpServlet {
+
+	private Logger logger = LogManager.getLogger();
+
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -40,7 +46,7 @@ public class OrderCommitServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("[実行]：OrderCommitServlet");
+		logger.trace("start");
 
 		// 文字コードをutf-8に変換
 		request.setCharacterEncoding("utf-8");
@@ -55,15 +61,14 @@ public class OrderCommitServlet extends HttpServlet {
 		PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
 		PostgreSqlOrderTableDao orderdao = (PostgreSqlOrderTableDao) daofactory.createOrderTableDao();
 
-		System.out.println("[DAO生成]：OrderCommitServlet");
 
 		// 注文IDをキーに注文情報を検索
 		ItemOrder order = orderdao.selectByOrderId(orderid);
 
-		System.out.println("[注文情報検索]：OrderCommitServlet");
-		System.out.println("[注文情報検索]：OrderID:" + order.getOrderid());
-		System.out.println("[注文情報検索]：UserID:" + order.getUserid());
-		System.out.println("[注文情報検索]：Status:" + order.getStatus());
+		logger.debug("注文ID", order.getOrderid());
+		logger.debug("ユーザID", order.getUserid());
+		logger.debug("ステータス", order.getStatus());
+
 
 		// 支払方法・発送先をセット
 		order.setPayment(payment);
@@ -75,13 +80,14 @@ public class OrderCommitServlet extends HttpServlet {
 		// 注文情報を更新
 		orderdao.update(order);
 
-		System.out.println("[ステータス更新]：OrderCommitServlet");
-
 		// 注文完了画面へ遷移
 	    String view = "/WEB-INF/view/OrderFinishView.jsp";
 	    RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 
 	    dispatcher.forward(request, response);
+
+	    logger.trace("end");
+
 	}
 
 }

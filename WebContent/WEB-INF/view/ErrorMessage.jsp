@@ -4,17 +4,17 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" href="./css/MainThema.css">
-		<title>注文完了</title>
+		<title>システムエラー</title>
 	</head>
 	<body>
-		レジ
 		<div id="contents">
 			<div class="container">
 				<div class="grid g2">
-					<h2>注文を完了しました。</h2>
+					<h2>システムエラーが発生しました。管理者へ連絡してください。</h2>
 					<input type="button" onclick="location.href = './ItemListServlet'" value="戻る">
 				</div>
 			</div>
 		</div>
+
 	</body>
 </html>
