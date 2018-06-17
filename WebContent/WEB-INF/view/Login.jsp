@@ -11,9 +11,9 @@
 		<link rel="stylesheet" href="./css/MainThema.css">
 		<script type="text/javascript">
 		<!--
-			function modeSubmit(mode) {
+			function modeSubmit(p_mode) {
 				var form = document.forms.LoginForm;
-				form.mode = mode;
+				form.mode.value = p_mode;
 			    form.submit();
 			}
 		-->
