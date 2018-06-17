@@ -11,19 +11,9 @@
 		<link rel="stylesheet" href="./css/MainThema.css">
 		<script type="text/javascript">
 		<!--
-			function execRequest(action, method, data) {
-			    var form = document.createElement("form");
-			    form.setAttribute("action", action); // 投げたいURLを書く。
-			    form.setAttribute("method", method); // POSTリクエストもしくはGETリクエストを書く。
-			    form.style.display = "none"; // 画面に表示しないことを指定する
-			    document.body.appendChild(form);
-			    if (data !== undefined) {
-			        var input = document.createElement('input');
-			        input.setAttribute('type', 'hidden');
-			        input.setAttribute('name', 'mode');
-			        input.setAttribute('value', data);
-			        form.appendChild(input);
-			    }
+			function modeSubmit(mode) {
+				var form = document.forms.LoginForm;
+				form.mode = mode;
 			    form.submit();
 			}
 		-->
@@ -33,7 +23,7 @@
 		<div id="contents">
 			<div class="container">
 				<div class="grid g2">
-					<form method="post" action="./LoginServlet">
+					<form name="LoginForm" method="post" action="./LoginServlet">
 						<h2>ログイン</h2>
 						<h3>ユーザIDとパスワードを入力してください。</h3>
 						<% if ( judge.equals("NG") ) { %>
@@ -41,8 +31,9 @@
 						<% } %>
 						ユーザID:<input type="text" name="userid" value=""><br/>
 						パスワード:<input type="password" name="password" value=""><br/>
-						<input type="button" value="ログイン" onclick="execRequest('./LoginServlet','post','chk')">
-						<input type="button" value="新規ユーザの登録" onclick="execRequest('./LoginServlet','post','new')">
+						<input type="hidden" name="mode" value="">
+						<input type="button" value="ログイン" onclick="modeSubmit('chk')">
+						<input type="button" value="新規ユーザの登録" onclick="modeSubmit('new')">
 						<input type="button" onclick="location.href = './ItemListServlet'" value="戻る">
 					</form>
 				</div>
