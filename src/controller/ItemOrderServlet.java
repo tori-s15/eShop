@@ -71,7 +71,7 @@ public class ItemOrderServlet extends HttpServlet {
 			number = (long)Integer.parseInt(request.getParameter("number"));	// 数量
 			price = (long)Integer.parseInt(request.getParameter("price"));		// 単価
 			amount = number * price;											// 金額 （数量　×　単価）
-			userid = request.getParameter("userid");						// ユーザID
+			userid = request.getParameter("userid");							// ユーザID
 
 			// dao生成
 			PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
@@ -87,7 +87,7 @@ public class ItemOrderServlet extends HttpServlet {
 
 				// 注文をカートに格納
 				order = new ItemOrder();
-				order.setUserid("TEST");					// ユーザIDをセット
+				order.setUserid(userid);					// ユーザIDをセット
 				order.setStatus(ItemOrder.STATUS_INIT);		// カート格納状態をセット
 				order.setTotalamount(amount);				// 合計金額に金額をセット
 
