@@ -61,6 +61,9 @@ public class OrderCommitServlet extends HttpServlet {
 		ItemOrder order = orderdao.selectByOrderId(orderid);
 
 		System.out.println("[注文情報検索]：OrderCommitServlet");
+		System.out.println("[注文情報検索]：OrderID:" + order.getOrderid());
+		System.out.println("[注文情報検索]：UserID:" + order.getUserid());
+		System.out.println("[注文情報検索]：Status:" + order.getStatus());
 
 		// 支払方法・発送先をセット
 		order.setPayment(payment);

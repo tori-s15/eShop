@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="model.ItemOrder"%>
 <%
-	//ItemOrder order = (ItemOrder) request.getAttribute("order");
-	ItemOrder order = new ItemOrder();
-	order.setOrderid(1);
-	order.setUserid("TEST");
-	order.setTotalamount(10000);
+	ItemOrder order = (ItemOrder) request.getAttribute("order");
+//	ItemOrder order = new ItemOrder();
+//	order.setOrderid(1);
+//	order.setUserid("TEST");
+//	order.setTotalamount(10000);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
