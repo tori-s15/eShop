@@ -22,6 +22,14 @@
 			<DefaultRolloverStrategy max="3"/>
 		</RollingFile>
 		<Loggers>
+			<Logger name="controller">
+				<AppenderRef ref="Console" />
+				<AppenderRef ref="logfile001" />
+			</Logger>
+			<Logger name="dao">
+				<AppenderRef ref="Console" />
+				<AppenderRef ref="logfile001" />
+			</Logger>
 			<Root level="trace">
 				<AppenderRef ref="Console" />
 				<AppenderRef ref="logfile001" />
