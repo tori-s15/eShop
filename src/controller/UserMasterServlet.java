@@ -19,7 +19,7 @@ import model.UserMaster;
 /**
  * Servlet implementation class UserMaseterServlet
  */
-@WebServlet("/UserMaseterServlet")
+@WebServlet("/UserMasterServlet")
 public class UserMasterServlet extends HttpServlet {
 
 	private Logger logger = LogManager.getLogger();

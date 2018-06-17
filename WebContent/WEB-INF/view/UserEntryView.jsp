@@ -10,7 +10,7 @@
 		<div id="contents">
 			<div class="container">
 				<div class="grid g2">
-					<form name="LoginForm" method="post" action="./UserMasterServlet">
+					<form name="UserEntryForm" method="post" action="./UserMasterServlet">
 						<h2>新規ユーザの登録</h2>
 						ユーザID:<input type="text" name="userid" value=""><br/>
 						ユーザ名:<input type="text" name="username" value=""><br/>
