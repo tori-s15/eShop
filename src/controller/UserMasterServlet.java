@@ -20,7 +20,7 @@ import model.UserMaster;
  * Servlet implementation class UserMaseterServlet
  */
 @WebServlet("/UserMaseterServlet")
-public class UserMaseterServlet extends HttpServlet {
+public class UserMasterServlet extends HttpServlet {
 
 	private Logger logger = LogManager.getLogger();
 
@@ -29,7 +29,7 @@ public class UserMaseterServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserMaseterServlet() {
+    public UserMasterServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
