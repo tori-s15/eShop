@@ -40,6 +40,8 @@ public class OrderCommitServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		System.out.println("[実行]：OrderCommitServlet");
+
 		// 文字コードをutf-8に変換
 		request.setCharacterEncoding("utf-8");
 
