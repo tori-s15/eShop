@@ -50,6 +50,7 @@ public class LoginServlet extends HttpServlet {
 		String view = null;
 		String userid = null;		// ユーザID
 		String password = null;		// パスワード
+		String mode = null;
 
 		try {
 
@@ -58,37 +59,51 @@ public class LoginServlet extends HttpServlet {
 			// 文字コードをutf-8に変換
 			request.setCharacterEncoding("utf-8");
 
-			// パラメータの取得
+			// パラメータ（処理モード）の取得
+			mode = (String)request.getParameter("mode");
+
+			// パラメータ（ユーザID/パスワード）の取得
 			userid = (String)request.getParameter("userid");		// ユーザID
 			password = (String)request.getParameter("password");	// パスワード
 
-			if ( userid == null || userid.equals("") ) {
-				// 遷移先をログイン画面にセット
-				view = "/WEB-INF/view/Login.jsp";
-
-			} else {
-
-				// dao生成
-				PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
-				PostgreSqlUserMasterDao dao = (PostgreSqlUserMasterDao) daofactory.createUserMasterDao();
-
-				UserMaster user = dao.selectByUserId(userid);
-				if ( (user == null) || !(user.getPassword().equals(password)) ) {
-
-					// 遷移先をログイン画面にセット
+			switch ( mode ) {
+				// 新規ユーザ登録
+				case "new" :
+					// 遷移先をユーザ登録画面にセット
 					view = "/WEB-INF/view/UserEntryView.jsp";
+					break;
 
-					// パラメータに判定「NG」をセット
-					request.setAttribute("judge", false);
+				// ログイン
+				case "login" :
+					// 遷移先をログイン画面にセット
+					view = "/WEB-INF/view/Login.jsp";
+					break;
 
-				} else {
-					// 商品一覧サーブレットへ処理を移す
-				    view = "/ItemListServlet";
+				// 認証処理
+				case "chk" :
+					// 認証処理（OKであればユーザマスタが戻る）
+					UserMaster user = certification(userid, password);
 
-				    // パラメータにユーザマスタをセット
-					request.setAttribute("usermaster", user);
-				}
+					//認証OKの場合
+					if ( user != null ) {
+						// 遷移先を商品一覧サーブレットにセット
+					    view = "/ItemListServlet";
+
+					    // パラメータにユーザマスタをセット
+						request.setAttribute("usermaster", user);
+
+				   // 認証NGの場合
+					} else {
+						// 遷移先をログイン画面にセット
+						view = "/WEB-INF/view/Login.jsp";
+
+						// パラメータに判定「NG」をセット
+						request.setAttribute("judge", false);
+
+					}
+					break;
 			}
+
 		} catch(Exception e) {
 			// ログ出力
 			logger.error("SYSTEM ERROR",e);
@@ -103,6 +118,32 @@ public class LoginServlet extends HttpServlet {
 
 		    logger.trace("end");
 		}
+	}
+
+
+	/**
+	 * ログイン認証
+	 * @param userid,password
+	 * @return UserMaster
+	 */
+	private UserMaster certification(String userid, String password) {
+
+		UserMaster user = null;
+
+		if ( (userid != null) && !( userid.equals("")) ) {
+			// dao生成
+			PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
+			PostgreSqlUserMasterDao dao = (PostgreSqlUserMasterDao) daofactory.createUserMasterDao();
+
+			// ユーザIDでユーザマスタを検索
+			user = dao.selectByUserId(userid);
+
+			// 認証NG（パスワード間違い）の場合
+			if ((user != null) && !(user.getPassword().equals(password)) ) {
+				user = null;
+			}
+		}
+		return user;
 	}
 
 }

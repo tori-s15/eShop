@@ -4,6 +4,8 @@
 <%
 	@SuppressWarnings("unchecked")
 	List<ItemMaster> itemlist = (List<ItemMaster>) request.getAttribute("itemlist");
+
+	String userid = (String) request.getAttribute("userid");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,12 +13,32 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" href="./css/MainThema.css">
+		<script type="text/javascript">
+		<!--
+			function execRequest(action, method, data) {
+			    var form = document.createElement("form");
+			    form.setAttribute("action", action); // 投げたいURLを書く。
+			    form.setAttribute("method", method); // POSTリクエストもしくはGETリクエストを書く。
+			    form.style.display = "none"; // 画面に表示しないことを指定する
+			    document.body.appendChild(form);
+			    if (data !== undefined) {
+			        var input = document.createElement('input');
+			        input.setAttribute('type', 'hidden');
+			        input.setAttribute('name', 'mode');
+			        input.setAttribute('value', data);
+			        form.appendChild(input);
+			    }
+			    form.submit();
+			}
+		-->
+		</script>
+
 
 		<title>デモアプリ（ネット書店）</title>
 	</head>
 	<body>
-		<input type="button" onclick="location.href = './LoginServlet'" value="ログイン">
-
+		<input type="button" value="ログイン" onclick="execRequest('./LoginServlett','post','login')">
+		<input type="hidden" name="userid" value="<%= userid %>">
 		<div id="contents">
 			<div class="container">
 				<% for(ItemMaster item  : itemlist) { %>
