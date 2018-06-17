@@ -17,7 +17,7 @@
 				<pattern>${format1}</pattern>
 			</PatternLayout>
 			<Policies>
-				<SizeBasedTriggeringPolicy size="1MB"/>
+				<SizeBasedTriggeringPolicy size="1 MB"/>
 			</Policies>
 			<DefaultRolloverStrategy max="3"/>
 		</RollingFile>
