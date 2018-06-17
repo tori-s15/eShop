@@ -260,7 +260,7 @@ public class PostgreSqlItemMasterDao implements ItemMasterDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			System.out.println("更新：" + i + "件");
+			System.out.println("更新[ITEM_MASTER]：" + i + "件");
 
 			// コミット
 			conn.commit();
@@ -308,7 +308,7 @@ public class PostgreSqlItemMasterDao implements ItemMasterDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			System.out.println("更新：" + i + "件");
+			System.out.println("削除[ITEM_MASTER]：" + i + "件");
 
 			// コミット
 			conn.commit();

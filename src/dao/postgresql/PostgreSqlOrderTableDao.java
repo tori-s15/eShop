@@ -279,7 +279,7 @@ public class PostgreSqlOrderTableDao implements OrderTableDao {
 			// SQL文実行
 			int i = statement.executeUpdate();
 
-			System.out.println("更新：" + i + "件");
+			System.out.println("更新[ORDER_TABLE]：" + i + "件");
 
 			// コミット
 			conn.commit();
