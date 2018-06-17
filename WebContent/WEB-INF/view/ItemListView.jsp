@@ -37,7 +37,7 @@
 		<title>デモアプリ（ネット書店）</title>
 	</head>
 	<body>
-		<input type="button" value="ログイン" onclick="execRequest('./LoginServlett','post','login')">
+		<input type="button" value="ログイン" onclick="execRequest('./LoginServlet','post','login')">
 		<input type="hidden" name="userid" value="<%= userid %>">
 		<div id="contents">
 			<div class="container">
