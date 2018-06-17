@@ -49,7 +49,7 @@
 	<body onload="loginCheck()">
 		<form name="login">
 			<input type="button" value="ログイン" name="login_button" onclick="execRequest('./LoginServlet','post','login')">
-		</form>>
+		</form>
 		<div id="contents">
 			<div class="container">
 				<% for(ItemMaster item  : itemlist) { %>
