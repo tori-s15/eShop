@@ -62,27 +62,33 @@ public class LoginServlet extends HttpServlet {
 			userid = (String)request.getParameter("userid");		// ユーザID
 			password = (String)request.getParameter("password");	// パスワード
 
-			// dao生成
-			PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
-			PostgreSqlUserMasterDao dao = (PostgreSqlUserMasterDao) daofactory.createUserMasterDao();
-
-			UserMaster user = dao.selectByUserId(userid);
-			if ( (user == null) || !(user.getPassword().equals(password)) ) {
-
+			if ( userid == null || userid.equals("") ) {
 				// 遷移先をログイン画面にセット
-				view = "/WEB-INF/view/UserEntryView.jsp";
-
-				// パラメータに判定「NG」をセット
-				request.setAttribute("judge", false);
+				view = "/WEB-INF/view/Login.jsp";
 
 			} else {
-				// 商品一覧サーブレットへ処理を移す
-			    view = "/ItemListServlet";
 
-			    // パラメータにユーザマスタをセット
-				request.setAttribute("usermaster", user);
+				// dao生成
+				PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
+				PostgreSqlUserMasterDao dao = (PostgreSqlUserMasterDao) daofactory.createUserMasterDao();
+
+				UserMaster user = dao.selectByUserId(userid);
+				if ( (user == null) || !(user.getPassword().equals(password)) ) {
+
+					// 遷移先をログイン画面にセット
+					view = "/WEB-INF/view/UserEntryView.jsp";
+
+					// パラメータに判定「NG」をセット
+					request.setAttribute("judge", false);
+
+				} else {
+					// 商品一覧サーブレットへ処理を移す
+				    view = "/ItemListServlet";
+
+				    // パラメータにユーザマスタをセット
+					request.setAttribute("usermaster", user);
+				}
 			}
-
 		} catch(Exception e) {
 			// ログ出力
 			logger.error("SYSTEM ERROR",e);
