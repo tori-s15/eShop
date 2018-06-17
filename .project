@@ -28,11 +28,4 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>build.gradle</name>
-			<type>1</type>
-			<location>D:/tori/workspace/Web-App/build.gradle</location>
-		</link>
-	</linkedResources>
 </projectDescription>

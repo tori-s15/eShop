@@ -1,0 +1,38 @@
+apply plugin: 'war'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile fileTree(dir: "WebContent/WEB-INF/lib", include: '*.jar')
+
+    compile 'org.apache.tomcat:tomcat-servlet-api:9.0.8'
+    compile 'org.apache.tomcat:tomcat-jsp-api:9.0.8'
+}
+
+project.webAppDirName = 'WebContent'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'src'
+        }
+    }
+}
+
+war {
+    into('view'){
+        from('view')
+    }
+    exclude 'WEB-INF/lib/**'
+    exclude 'WEB-INF/classes/**'
+}
+
+def defaultEncoding = 'UTF-8'
+compileJava {
+    options.encoding = defaultEncoding
+}
