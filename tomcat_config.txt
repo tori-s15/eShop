@@ -1,0 +1,23 @@
+context.xml
+（末尾の<Context>から</Context>の間に以下を追記）
+
+    <Resource name="jdbc/postgres" auth="Container"
+          type="javax.sql.DataSource"
+          driverClassName="org.postgresql.Driver"
+          url="jdbc:postgresql://localhost/xxxx"
+          username="xxxxx" password="xxxxx" maxTotal="20" maxIdle="10"
+          maxWaitMillis="-1"/>
+
+・localhostの後ろの「xxxx」DB名に変更
+・usernameとpasswordを環境に合わせて変更
+
+
+web.xml
+（末尾の<welcome-file-list></welcome-file-list>の下に以下を追記）
+
+    <resource-ref>
+        <description>postgreSQL Datasource example</description>
+        <res-ref-name>jdbc/postgres</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>

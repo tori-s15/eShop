@@ -1,0 +1,36 @@
+CREATE TABLE ITEM_MASTER (
+ ITEM_ID     char(4) PRIMARY KEY,
+ ITEM_NAME   varchar(200),
+ PRICE       integer,
+ STOCKS      integer,
+ DESCRIPTION varchar(1000)
+);
+
+
+CREATE TABLE ORDER_TABLE (
+ ORDER_ID      serial PRIMARY KEY,
+ USER_ID       char(4),
+ TOTAL_AMOUNT  integer,
+ PAYMENT       integer,
+ ADDRESS       varchar(1000),
+ STATUS        integer
+);
+
+
+CREATE TABLE ORDER_DETAIL_TABLE (
+ ORDER_ID      integer,
+ NO            integer,
+ ITEM_ID       char(4),
+ NUMBER        integer,
+ AMOUNT        integer,
+ PRIMARY KEY(ORDER_ID,NO)
+);
+
+
+CREATE TABLE USER_MASTER (
+ USER_ID       char(4) PRIMARY KEY,
+ PASSWORD      varchar(16),
+ USER_NAME     varchar(80),
+ TEL           varchar(20),
+ ADDRESS       varchar(1000)
+);
