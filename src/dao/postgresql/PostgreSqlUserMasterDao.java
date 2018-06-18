@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 import dao.UserMasterDao;
 import model.UserMaster;
 
-public class PostgreSqlUserMasterDao implements UserMasterDao {
+public class PostgreSqlUserMasterDao extends UserMasterDao {
 
 	/** ログ出力 */
 	private Logger logger = LogManager.getLogger();

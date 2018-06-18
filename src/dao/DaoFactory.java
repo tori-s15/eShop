@@ -1,32 +1,25 @@
 package dao;
 
-public abstract class DaoFactory {
+import dao.mysql.MySqlDaoFactory;
+import dao.postgresql.PostgreSqlDaoFactory;
 
-	/**
-	 * UserMasterのDAOを生成
-	 * @param なし
-	 * @return なし
-	 */
-	abstract public UserMasterDao createUserMasterDao();
+public class DaoFactory {
 
-	/**
-	 * ItemMasterのDAOを生成
-	 * @param なし
-	 * @return なし
-	 */
-	abstract public ItemMasterDao createItemMasterDao();
+	public final static int MYSQL = 1;
+	public final static int POSTGRESQL = 2;
 
-	/**
-	 * OrderテーブルのDAOを生成
-	 * @param なし
-	 * @return なし
-	 */
-	abstract public OrderTableDao createOrderTableDao();
+	public AbstractDaoFactory create(int dbMode) {
+		AbstractDaoFactory daofactory = null;
 
-	/**
-	 * OrderDetailテーブルのDAOを生成
-	 * @param なし
-	 * @return なし
-	 */
-	abstract public OrderDetailTableDao createOrderDetailTableDao();
+		if ( dbMode == MYSQL ) {
+			daofactory = new MySqlDaoFactory();
+
+		} else if( dbMode == POSTGRESQL ){
+			daofactory = new PostgreSqlDaoFactory();
+
+		}
+
+		return daofactory;
+	}
+
 }

@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import dao.postgresql.PostgreSqlDaoFactory;
-import dao.postgresql.PostgreSqlUserMasterDao;
+import dao.AbstractDaoFactory;
+import dao.DaoFactory;
+import dao.UserMasterDao;
 import model.UserMaster;
 
 /**
@@ -73,8 +74,12 @@ public class UserMasterServlet extends HttpServlet {
 			logger.debug("住所={}",user.getAddress());
 
 			// dao生成
-			PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
-			PostgreSqlUserMasterDao dao = (PostgreSqlUserMasterDao) daofactory.createUserMasterDao();
+			DaoFactory factory = new DaoFactory();
+			AbstractDaoFactory daofactory = factory.create(DaoFactory.POSTGRESQL);
+			UserMasterDao dao = daofactory.createUserMasterDao();
+
+//			PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
+//			PostgreSqlUserMasterDao dao = (PostgreSqlUserMasterDao) daofactory.createUserMasterDao();
 
 			// ユーザマスタの登録
 			dao.insert(user);

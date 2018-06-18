@@ -6,7 +6,7 @@ import java.util.List;
 import dao.ItemMasterDao;
 import model.ItemMaster;
 
-public class MockItemMasterDao implements ItemMasterDao {
+public class MockItemMasterDao extends ItemMasterDao {
 
 	@Override
 	public ItemMaster selectById(String id) {

@@ -15,7 +15,7 @@ import org.apache.logging.log4j.Logger;
 import dao.OrderTableDao;
 import model.ItemOrder;
 
-public class PostgreSqlOrderTableDao implements OrderTableDao {
+public class PostgreSqlOrderTableDao extends OrderTableDao {
 
 	/** ログ出力 */
 	private Logger logger = LogManager.getLogger();

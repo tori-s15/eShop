@@ -7,13 +7,13 @@ import javax.sql.DataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import dao.DaoFactory;
+import dao.AbstractDaoFactory;
 import dao.ItemMasterDao;
 import dao.OrderDetailTableDao;
 import dao.OrderTableDao;
 import dao.UserMasterDao;
 
-public class MySqlDaoFactory extends DaoFactory {
+public class MySqlDaoFactory extends AbstractDaoFactory {
 
 	/** ログ出力 */
 	private Logger logger = LogManager.getLogger();

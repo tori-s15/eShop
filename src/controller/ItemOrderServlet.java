@@ -12,10 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import dao.postgresql.PostgreSqlDaoFactory;
-import dao.postgresql.PostgreSqlItemMasterDao;
-import dao.postgresql.PostgreSqlOrderDetailTableDao;
-import dao.postgresql.PostgreSqlOrderTableDao;
+import dao.AbstractDaoFactory;
+import dao.DaoFactory;
+import dao.ItemMasterDao;
+import dao.OrderDetailTableDao;
+import dao.OrderTableDao;
 import model.ItemMaster;
 import model.ItemOrder;
 import model.ItemOrderDetail;
@@ -74,10 +75,16 @@ public class ItemOrderServlet extends HttpServlet {
 			userid = request.getParameter("userid");							// ユーザID
 
 			// dao生成
-			PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
-			PostgreSqlOrderTableDao orderdao = (PostgreSqlOrderTableDao) daofactory.createOrderTableDao();
-			PostgreSqlOrderDetailTableDao detaildao = (PostgreSqlOrderDetailTableDao) daofactory.createOrderDetailTableDao();
-			PostgreSqlItemMasterDao itemdao = (PostgreSqlItemMasterDao) daofactory.createItemMasterDao();
+			DaoFactory factory = new DaoFactory();
+			AbstractDaoFactory daofactory = factory.create(DaoFactory.POSTGRESQL);
+			OrderTableDao orderdao = daofactory.createOrderTableDao();
+			OrderDetailTableDao detaildao = daofactory.createOrderDetailTableDao();
+			ItemMasterDao itemdao = daofactory.createItemMasterDao();
+
+//			PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
+//			PostgreSqlOrderTableDao orderdao = (PostgreSqlOrderTableDao) daofactory.createOrderTableDao();
+//			PostgreSqlOrderDetailTableDao detaildao = (PostgreSqlOrderDetailTableDao) daofactory.createOrderDetailTableDao();
+//			PostgreSqlItemMasterDao itemdao = (PostgreSqlItemMasterDao) daofactory.createItemMasterDao();
 
 			// ユーザIDをキーにカートを検索
 			ItemOrder order = orderdao.selectByUserIdInitOnly(userid);
