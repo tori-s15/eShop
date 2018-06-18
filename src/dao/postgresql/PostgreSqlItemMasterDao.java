@@ -15,7 +15,7 @@ import org.apache.logging.log4j.Logger;
 import dao.ItemMasterDao;
 import model.ItemMaster;
 
-public class PostgreSqlItemMasterDao implements ItemMasterDao {
+public class PostgreSqlItemMasterDao extends ItemMasterDao {
 
 	/** ログ出力 */
 	private Logger logger = LogManager.getLogger();
@@ -36,7 +36,6 @@ public class PostgreSqlItemMasterDao implements ItemMasterDao {
 	 * @param id
 	 * @return ItemMaster
 	 */
-	@Override
 	public ItemMaster selectById(String id) {
 		Connection conn = null;
 		PreparedStatement statement = null;
@@ -84,7 +83,6 @@ public class PostgreSqlItemMasterDao implements ItemMasterDao {
 	 * @param name
 	 * @return List<ItemMaster>
 	 */
-	@Override
 	public List<ItemMaster> selectByName(String name) {
 		Connection conn = null;
 		PreparedStatement statement = null;
@@ -135,7 +133,6 @@ public class PostgreSqlItemMasterDao implements ItemMasterDao {
 	 * @param なし
 	 * @return List<ItemMaster>
 	 */
-	@Override
 	public List<ItemMaster> selectAll() {
 		Connection conn = null;
 		PreparedStatement statement = null;
@@ -180,7 +177,6 @@ public class PostgreSqlItemMasterDao implements ItemMasterDao {
 	 * @param ItemMaster
 	 * @return なし
 	 */
-	@Override
 	public void insert(ItemMaster itemmaster) {
 		Connection conn = null;
 		PreparedStatement statement = null;
@@ -237,7 +233,6 @@ public class PostgreSqlItemMasterDao implements ItemMasterDao {
 	 * @param ItemMaster
 	 * @return なし
 	 */
-	@Override
 	public void update(ItemMaster itemmaster) {
 		Connection conn = null;
 		PreparedStatement statement = null;
@@ -294,7 +289,6 @@ public class PostgreSqlItemMasterDao implements ItemMasterDao {
 	 * @param id
 	 * @return なし
 	 */
-	@Override
 	public void delete(String id) {
 		Connection conn = null;
 		PreparedStatement statement = null;

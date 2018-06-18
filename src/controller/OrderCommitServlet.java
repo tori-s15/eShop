@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import dao.postgresql.PostgreSqlDaoFactory;
-import dao.postgresql.PostgreSqlOrderTableDao;
+import dao.AbstractDaoFactory;
+import dao.DaoFactory;
+import dao.OrderTableDao;
 import model.ItemOrder;
 
 /**
@@ -59,8 +60,12 @@ public class OrderCommitServlet extends HttpServlet {
 		String userid = request.getParameter("userid");							// ユーザID
 
 		// dao生成
-		PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
-		PostgreSqlOrderTableDao orderdao = (PostgreSqlOrderTableDao) daofactory.createOrderTableDao();
+		DaoFactory factory = new DaoFactory();
+		AbstractDaoFactory daofactory = factory.create(DaoFactory.POSTGRESQL);
+		OrderTableDao orderdao = daofactory.createOrderTableDao();
+
+//		PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
+//		PostgreSqlOrderTableDao orderdao = (PostgreSqlOrderTableDao) daofactory.createOrderTableDao();
 
 
 		// 注文IDをキーに注文情報を検索

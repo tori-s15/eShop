@@ -1,4 +1,4 @@
-package dao.postgresql;
+package dao.mysql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import org.apache.logging.log4j.Logger;
 import dao.OrderDetailTableDao;
 import model.ItemOrderDetail;
 
-public class PostgreSqlOrderDetailTableDao extends OrderDetailTableDao {
+public class MySqlOrderDetailTableDao extends OrderDetailTableDao {
 
 	/** ログ出力 */
 	private Logger logger = LogManager.getLogger();
@@ -27,7 +27,7 @@ public class PostgreSqlOrderDetailTableDao extends OrderDetailTableDao {
 	 * コンストラクタ
 	 * @param DataSource
 	 */
-	public PostgreSqlOrderDetailTableDao(DataSource source) {
+	public MySqlOrderDetailTableDao(DataSource source) {
 		this.source = source;
 	}
 

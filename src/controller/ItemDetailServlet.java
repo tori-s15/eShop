@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import dao.postgresql.PostgreSqlDaoFactory;
-import dao.postgresql.PostgreSqlItemMasterDao;
+import dao.AbstractDaoFactory;
+import dao.DaoFactory;
+import dao.ItemMasterDao;
 import model.ItemMaster;
 
 /**
@@ -56,8 +57,12 @@ public class ItemDetailServlet extends HttpServlet {
 		String userid = request.getParameter("userid");		// ユーザID
 
 		// dao生成
-		PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
-		PostgreSqlItemMasterDao dao = (PostgreSqlItemMasterDao) daofactory.createItemMasterDao();
+		DaoFactory factory = new DaoFactory();
+		AbstractDaoFactory daofactory = factory.create(DaoFactory.POSTGRESQL);
+		ItemMasterDao dao = daofactory.createItemMasterDao();
+
+		//PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
+		//PostgreSqlItemMasterDao dao = (PostgreSqlItemMasterDao) daofactory.createItemMasterDao();
 
 		// dao生成（モック）
 		//MockItemMasterDao dao = new MockItemMasterDao();

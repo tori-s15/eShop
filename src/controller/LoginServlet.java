@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import dao.postgresql.PostgreSqlDaoFactory;
-import dao.postgresql.PostgreSqlUserMasterDao;
+import dao.AbstractDaoFactory;
+import dao.DaoFactory;
+import dao.UserMasterDao;
 import model.UserMaster;
 
 /**
@@ -144,8 +145,12 @@ public class LoginServlet extends HttpServlet {
 
 		if ( (userid != null) && !( userid.equals("")) ) {
 			// dao生成
-			PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
-			PostgreSqlUserMasterDao dao = (PostgreSqlUserMasterDao) daofactory.createUserMasterDao();
+			DaoFactory factory = new DaoFactory();
+			AbstractDaoFactory daofactory = factory.create(DaoFactory.POSTGRESQL);
+			UserMasterDao dao = daofactory.createUserMasterDao();
+
+//			PostgreSqlDaoFactory daofactory = new PostgreSqlDaoFactory();
+			//PostgreSqlUserMasterDao dao = (PostgreSqlUserMasterDao) daofactory.createUserMasterDao();
 
 			// ユーザIDでユーザマスタを検索
 			user = dao.selectByUserId(userid);
